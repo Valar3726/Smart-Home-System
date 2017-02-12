@@ -1,2 +1,2 @@
-# Smart-Home-System-
+# Smart-Home-System
 Based on WeChat Public Platform
