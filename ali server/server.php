@@ -1,25 +1,11 @@
 <?php
-//确保在连接客户端时不会超时
+
 set_time_limit(0);
 
 $ip = '139.129.7.4';
 $port = 10087;
 
-/*
- +-------------------------------
- *  @socket通信整个过程
- +-------------------------------
- *  @socket_create
- *  @socket_bind
- *  @socket_listen
- *  @socket_accept
- *  @socket_read
- *  @socket_write
- *  @socket_close
- +--------------------------------
- */
 
-/*----------------  以下操作都是手册上的  -------------------*/
 if(($sock = socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) < 0) {
   echo "socket_create() 失败的原因是:".socket_strerror($sock)."\n";
 }
@@ -46,7 +32,7 @@ while(1)
                 break;
         }
 }
-//发到客户端
+
 while(1)
 {
         $filename = 'data.txt';
@@ -81,8 +67,7 @@ while(1)
 
         file_put_contents('receive.txt',$buf);
 }
- //echo $buf;
-    // socket_close($msgsock);
+
 
 
 socket_close($sock);

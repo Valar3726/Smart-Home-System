@@ -6,17 +6,7 @@ echo "<h2>TCP/IP Connection</h2>\n";
 $port = 10087;
 $ip = "139.129.7.4";
 
-/*
- +-------------------------------
- *  @socket连接整个过程
- +-------------------------------
- *  @socket_create
- *  @socket_connect
- *  @socket_write
- *  @socket_read
- *  @socket_close
- +--------------------------------
- */
+
 
 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 if ($socket < 0) {
@@ -30,7 +20,7 @@ if ($result < 0) {
 }else {
   echo "连接OK\n";
 }
-//$a = system("python data.py");
+
 $in = 'hello';
 $out = '';
 
@@ -106,32 +96,14 @@ while(1)
                 else if($out == 4)
        {
                system("python write.py");
-               //system("python data.py");
-               //$filename = 'data.txt';
-               //while(1)
-               //{
-               //      if(file_exists($filename))
-                //       break;
-               //}
-               //$in = file_get_contents($filename);
-               //unlink($filename);
-               //$array = explode("\r\n",$in);
+
                $in = "LED already open";
                socket_write($socket,$in,strlen($in));
        }
        else if($out == 5)
        {
                system("python write_1.py");
-//              system("python data.py");
- //              $filename = 'data.txt';
-   //            while(1)
-     //          {
-       //                if(file_exists($filename))
-         //              break;
-           //    }
-             //   $in = file_get_contents($filename);
-              // unlink($filename);
-              // $array = explode("\r\n",$in);
+
                $in = "LED already closed";
                socket_write($socket,$in,strlen($in));
        }

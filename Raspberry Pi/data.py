@@ -11,7 +11,7 @@ def recv(serial):
             break
         else:
             continue
-       #sleep(0.02)
+
     return data
 
 data =recv(ser)

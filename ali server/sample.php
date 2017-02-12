@@ -6,9 +6,9 @@ header("Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . "GMT" );
 header("Cache-Control: no-cache, must-revalidate" );
   $wechatObj = new weixinapi();
   $postObj = $wechatObj->getHttp();
-  $fromUsername = $postObj->FromUserName;  //发送方帐号（一个OpenID）
-  $toUsername = $postObj->ToUserName;  //开发者微信号
-  $keyword = trim($postObj->Content);  //消息内容
+  $fromUsername = $postObj->FromUserName;
+  $toUsername = $postObj->ToUserName;
+  $keyword = trim($postObj->Content);
   $MsgType = $postObj->MsgType;
   $filename_1 = 'data.txt';
   $filename_2 = 'receive.txt';
@@ -29,23 +29,23 @@ header("Cache-Control: no-cache, must-revalidate" );
           unlink($filename_2);
           $dst = "w1.png";
           $tem =  floatval($content);
-          //得到原始图片信息
+
           $dst_im = imagecreatefrompng($dst);
           $dst_info = getimagesize($dst);
 
-          //水印图像
+
           $src = "w2.png";
           $src_im = imagecreatefrompng($src);
           $src_info = getimagesize($src);
 
-          //水印透明度
+
           $alpha = 100;
           $out_1 = $tem*1.25;
           $out_2 = 181-$out_1;
-          //合并水印图片
+
           imagecopymerge($dst_im,$src_im,72,$out_2,0,0,13,$out_1,$alpha);
 
-          //输出合并后水印图片
+
           imagepng($dst_im,'w4.png');
           imagedestroy($dst_im);
           imagedestroy($src_im);
@@ -56,13 +56,13 @@ header("Cache-Control: no-cache, must-revalidate" );
           list($width, $height) = getimagesize($filename);
           $newwidth = $width * $percent;
           $newheight = $height;
-  // 创建一个图片。接收参数分别为宽高，返回生成的资源句柄
+
           $thumb = imagecreatetruecolor($newwidth, $newheight);
-  //获取源文件资源句柄。接收参数为图片路径，返回句柄
+
           $source = imagecreatefrompng($filename);
-  // 将源文件剪切全部域并缩小放到目标图片上。前两个为资源句柄
+
           imagecopyresampled($thumb, $source, 0, 0, 0, 0, $newwidth,$newheight, $width, $height);
-  // 输出给浏览器
+
           imagejpeg($thumb,'w5.png');
           unlink('w4.png');
           sleep(1.5);
@@ -86,23 +86,23 @@ header("Cache-Control: no-cache, must-revalidate" );
           unlink($filename_2);
           $dst = "4.png";
           $tem =  floatval($content);
-          //得到原始图片信息
+
           $dst_im = imagecreatefrompng($dst);
           $dst_info = getimagesize($dst);
 
-          //水印图像
+
           $src = "2.png";
           $src_im = imagecreatefrompng($src);
           $src_info = getimagesize($src);
 
-          //水印透明度
+
           $alpha = 100;
           $out_1 = $tem*2.5;
           $out_2 = 156-$out_1;
-          //合并水印图片
+
           imagecopymerge($dst_im,$src_im,72,$out_2,0,0,13,$out_1,$alpha);
 
-          //输出合并后水印图片
+
           imagepng($dst_im,'1.png');
           imagedestroy($dst_im);
           imagedestroy($src_im);
@@ -113,13 +113,13 @@ header("Cache-Control: no-cache, must-revalidate" );
           list($width, $height) = getimagesize($filename);
           $newwidth = $width * $percent;
           $newheight = $height;
-  // 创建一个图片。接收参数分别为宽高，返回生成的资源句柄
+
           $thumb = imagecreatetruecolor($newwidth, $newheight);
-  //获取源文件资源句柄。接收参数为图片路径，返回句柄
+
           $source = imagecreatefrompng($filename);
-  // 将源文件剪切全部域并缩小放到目标图片上。前两个为资源句柄
+
           imagecopyresampled($thumb, $source, 0, 0, 0, 0, $newwidth,$newheight, $width, $height);
-  // 输出给浏览器
+
           imagejpeg($thumb,'5.png');
           unlink('1.png');
           sleep(1.5);

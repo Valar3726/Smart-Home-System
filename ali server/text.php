@@ -1,16 +1,16 @@
 <?php
 class weixinapi
 {
-    // 获得 $postObj
-    public function getHttp(){  // 测试成功
+
+    public function getHttp(){
           $postStr =   isset($GLOBALS["HTTP_RAW_POST_DATA"]) ?  $GLOBALS["HTTP_RAW_POST_DATA"]  : "" ;
         $t =  strlen($postObj->MsgType) ;
         $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
         return $postObj;
     }
 
-    // 发送文本信息
-    public function retText($t, $postObj){  // 测试成功
+
+    public function retText($t, $postObj){
           $msgType =  "text";
         $time = time($postObj);
         $textTpl = "<xml>
@@ -21,12 +21,12 @@ class weixinapi
                     <Content><![CDATA[%s]]></Content>
                     <FuncFlag>0</FuncFlag>
                     </xml>";
-        // 返回文本信息模式
+
         $resultStr = sprintf($textTpl, $postObj->FromUserName, $postObj->ToUserName, $time, $msgType, $t);
-        //echo $resultStr;
+
         echo $resultStr;
     }
-    public function retImg($url,$postObj){ //未测试
+    public function retImg($url,$postObj){
         $imgtpl = "
                   <xml>
                   <ToUserName><![CDATA[%s]]></ToUserName>
@@ -43,8 +43,8 @@ class weixinapi
         $resultStr = sprintf($imgtpl,$postObj->FromUserName, $postObj->ToUserName, $time, $msgType,$url);
         echo $resultStr;
     }
-    // 发送图文信息
-    public function retImgTex($Title, $ArticleCount, $Description, $PicUrl, $Url,$postObj){ // 测试成功
+
+    public function retImgTex($Title, $ArticleCount, $Description, $PicUrl, $Url,$postObj){
         $imgtextTpl = "
                    <xml>
                    <ToUserName><![CDATA[%s]]></ToUserName>
@@ -62,7 +62,7 @@ class weixinapi
                    </Articles>
                    </xml>
                    ";
-        // 返回图文消息模式
+
         $msgType = "news";
         $time = time($postObj);
         $resultStr = sprintf($imgtextTpl, $postObj->FromUserName, $postObj->ToUserName, $time, $msgType, $ArticleCount,$Title,$Description,$PicUrl,$Url);
@@ -70,7 +70,7 @@ class weixinapi
         echo $resultStr;
     }
 
-    // 返回音乐消息
+
       public function retMusic($Title, $Description, $musicUrl, $bettermusic, $postObj){
           $imgmusicTpl = "
                      <xml>
@@ -86,14 +86,14 @@ class weixinapi
                                      </Music>
                                      </xml>
                      ";
-          // 返回音乐消息模式
+
           $msgType = "music";
           $time = time($postObj);
                   $resultStr = sprintf($imgmusicTpl, $postObj->FromUserName, $postObj->ToUserName, $time, $msgType, $Title, $Description, $musicUrl, $bettermusic);
           echo $resultStr;
       }
 
-       // 返回语音消息
+
       public function retVoice($id, $postObj){
           $imgmusicTpl = "
                      <xml>
@@ -107,7 +107,7 @@ class weixinapi
                      <FuncFlag>0</FuncFlag>
                                      </xml>
                      ";
-          // 返回语音消息模式
+      
           $msgType = "voice";
           $time = time($postObj);
           $s = $id;
