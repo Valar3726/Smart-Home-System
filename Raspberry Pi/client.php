@@ -18,7 +18,7 @@ $result = socket_connect($socket, $ip, $port);
 if ($result < 0) {
   echo "socket_connect() failed.\nReason: ($result) " . socket_strerror($result) . "\n";
 }else {
-  echo "连接OK\n";
+  echo "Connect OK\n";
 }
 
 $in = 'hello';
@@ -27,7 +27,7 @@ $out = '';
 if(!socket_write($socket, $in, strlen($in))) {
   echo "socket_write() failed: reason: " . socket_strerror($socket) . "\n";
 }else {
-  echo "发送到服务器信息成功！\n";
+  echo "Successfully to send message to server！\n";
 }
 
 while(1)
@@ -110,7 +110,7 @@ while(1)
 }
 
 
-echo "关闭SOCKET...\n";
+echo "close SOCKET...\n";
 socket_close($socket);
-echo "关闭OK\n";
+echo "close OK\n";
 ?>
