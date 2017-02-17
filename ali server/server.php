@@ -7,15 +7,15 @@ $port = 10087;
 
 
 if(($sock = socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) < 0) {
-  echo "socket_create() 失败的原因是:".socket_strerror($sock)."\n";
+  echo "socket_create() the reason of fail:".socket_strerror($sock)."\n";
 }
 
 if(($ret = socket_bind($sock,$ip,$port)) < 0) {
-  echo "socket_bind() 失败的原因是:".socket_strerror($ret)."\n";
+  echo "socket_bind() the reason of fail:".socket_strerror($ret)."\n";
 }
 
 if(($ret = socket_listen($sock,4)) < 0) {
-  echo "socket_listen() 失败的原因是:".socket_strerror($ret)."\n";
+  echo "socket_listen() the reason of fail:".socket_strerror($ret)."\n";
 }
 
 $count = 0;
@@ -28,7 +28,7 @@ while(1)
         }
         else
         {
-                echo "连接成功\n";
+                echo "connect successfully\n";
                 break;
         }
 }
@@ -51,7 +51,7 @@ while(1)
 
         socket_write($msgsock, $msg, strlen($msg));
 
-        echo "数据已发送\n";
+        echo "data has been sent\n";
 
         while(1)
         {
@@ -61,7 +61,7 @@ while(1)
                         break;
                 }
         }
-        $talkback = "收到的信息:$buf\n";
+        $talkback = "received message:$buf\n";
         echo $talkback;
 
 
