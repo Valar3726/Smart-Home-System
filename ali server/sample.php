@@ -12,7 +12,7 @@ header("Cache-Control: no-cache, must-revalidate" );
   $MsgType = $postObj->MsgType;
   $filename_1 = 'data.txt';
   $filename_2 = 'receive.txt';
-  if($keyword=="湿度")
+  if($keyword=="humidity")
   {
           if(file_exists('w5.png'))
           {
@@ -66,10 +66,10 @@ header("Cache-Control: no-cache, must-revalidate" );
           imagejpeg($thumb,'w5.png');
           unlink('w4.png');
           sleep(1.5);
-          $wechatObj->retImgTex("当前湿度",1,"当前湿度为：".$content,'http://139.129.7.4/w5.png','http://139.129.7.4/w5.png',$postObj);
+          $wechatObj->retImgTex("current humidity",1,"current humidity：".$content,'http://139.129.7.4/w5.png','http://139.129.7.4/w5.png',$postObj);
 
   }
-  else if($keyword=="温度")
+  else if($keyword=="temperature")
   {
           if(file_exists('5.png'))
           {
@@ -123,9 +123,9 @@ header("Cache-Control: no-cache, must-revalidate" );
           imagejpeg($thumb,'5.png');
           unlink('1.png');
           sleep(1.5);
-          $wechatObj->retImgTex("当前温度",1,"当前温度为：".$content."℃",'http://139.129.7.4/5.png','http://139.129.7.4/5.png',$postObj);
+          $wechatObj->retImgTex("current temperature",1,"current temperature：".$content."℃",'http://139.129.7.4/5.png','http://139.129.7.4/5.png',$postObj);
   }
-  else if($keyword=="光度")
+  else if($keyword=="luminosity")
 {
         $r_content = "2";
         file_put_contents($filename_1,$r_content);
@@ -136,10 +136,10 @@ header("Cache-Control: no-cache, must-revalidate" );
         }
         $content = file_get_contents($filename_2);
         unlink($filename_2);
-        $wechatObj->retText("光度为:".$content."lx",$postObj);
+        $wechatObj->retText("current luminosity:".$content."lx",$postObj);
 
 }
-else if($keyword=="LED状态")
+else if($keyword=="LED state")
 {
         $r_content = "3";
         file_put_contents($filename_1,$r_content);
@@ -152,7 +152,7 @@ else if($keyword=="LED状态")
         unlink($filename_2);
         $wechatObj->retText($content,$postObj);
 }
-else if($keyword=="打开LED")
+else if($keyword=="open LED")
 {
         $r_content = "4";
         file_put_contents($filename_1,$r_content);
@@ -165,7 +165,7 @@ else if($keyword=="打开LED")
         unlink($filename_2);
         $wechatObj->retText($content,$postObj);
 }
-else if($keyword=="关闭LED")
+else if($keyword=="close LED")
 {
         $r_content = "5";
         file_put_contents($filename_1,$r_content);
@@ -180,8 +180,7 @@ else if($keyword=="关闭LED")
 }
 else
 {
-        $content = "欢迎使用智能家居管理系统，分别输入湿";
-        $content1 = "度、温度、光度、LED状态可分别获取当前温度、湿、光度和LED的开关情况，输入打开LED则可打开LED灯，反之输入关闭LED则可以关闭LED灯";
+        $content = "Welcome to use Smart-Home-System, input temperature, humidity, luminosity and LED state respectively can achieve the current data and the state of LED. Input open LED can control the LED to be open and input open LED can control the LED to be closed.";
         $wechatObj->retText($content,$postObj);
 }
 ?>
